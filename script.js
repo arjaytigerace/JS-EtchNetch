@@ -1,33 +1,66 @@
+let currentMode = "random"; // Default mode
+
 // Function to create a grid of a specified size
 function createGrid(size) {
-  // Accessing the container div from the DOM
   const container = document.getElementById("grid-container");
-
-  // Clearing previous grid items if any
   container.innerHTML = "";
 
-  // Setting the grid template columns and rows based on the specified size
   container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-  // Loop to create each grid item
   for (let i = 0; i < size * size; i++) {
-    // Creating a new div element for each grid item
     const gridItem = document.createElement("div");
-
-    // Adding a class to the grid item for styling purposes
     gridItem.classList.add("grid-item");
 
-    // Adding event listener for 'mouseover' event on each grid item
-    gridItem.addEventListener("mouseover", () => {
-      // Change the background color of the grid item when the mouse hovers over it
-      gridItem.style.backgroundColor = "black"; // The color can be changed as needed
-    });
+    // Initialize custom properties for progressive darkening
+    gridItem.dataset.interactions = 0;
+    gridItem.dataset.red = Math.floor(Math.random() * 256);
+    gridItem.dataset.green = Math.floor(Math.random() * 256);
+    gridItem.dataset.blue = Math.floor(Math.random() * 256);
 
-    // Appending the grid item to the container div
+    gridItem.addEventListener("mouseover", handleMouseOver);
+
     container.appendChild(gridItem);
   }
 }
+
+// Event handler for mouseover
+function handleMouseOver(event) {
+  const square = event.target;
+  let interactions = parseInt(square.dataset.interactions);
+
+  // Increase interactions count
+  interactions++;
+  square.dataset.interactions = interactions;
+
+  if (currentMode === "random") {
+    if (interactions <= 10) {
+      // Calculate the new color by darkening the original color
+      const r = Math.floor(square.dataset.red * (1 - 0.1 * interactions));
+      const g = Math.floor(square.dataset.green * (1 - 0.1 * interactions));
+      const b = Math.floor(square.dataset.blue * (1 - 0.1 * interactions));
+      square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    } else {
+      // After 10 interactions, set color to black
+      square.style.backgroundColor = "black";
+    }
+  } else if (currentMode === "black") {
+    square.style.backgroundColor = "black";
+  }
+}
+
+// Function to change the drawing mode
+function changeMode(mode) {
+  currentMode = mode;
+}
+
+// Event listeners for mode change buttons
+document
+  .getElementById("black-mode")
+  .addEventListener("click", () => changeMode("black"));
+document
+  .getElementById("random-color-mode")
+  .addEventListener("click", () => changeMode("random"));
 
 // Function to change the grid size
 function changeGridSize() {
