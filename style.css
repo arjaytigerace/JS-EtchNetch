@@ -1,3 +1,29 @@
+/* Style for the main body to use Flexbox */
+body {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 20px; /* Add some padding around the content */
+}
+
+/* Style for the button container */
+#button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spacing between buttons */
+  margin-right: 20px; /* Space between buttons and the grid */
+}
+
+/* Style for the buttons */
+button {
+  cursor: pointer; /* Changes the cursor to indicate button functionality */
+  padding: 5px; /* Padding inside buttons */
+  background-color: #f8f8f8; /* Light background for buttons */
+  border: 1px solid #ccc; /* Border for buttons */
+  border-radius: 5px; /* Rounded corners for buttons */
+}
+
+/* Style for the grid container */
 #grid-container {
   display: grid;
   grid-template-columns: repeat(16, 1fr); /* Creates 16 columns */
@@ -5,10 +31,27 @@
   gap: 2px; /* Adjust gap between grid items */
   width: 500px; /* Adjust width as needed */
   height: 500px; /* Adjust height as needed */
-  margin: auto; /* Center the grid */
 }
 
+/* Style for the grid items */
 .grid-item {
   background-color: #f0f0f0; /* Light gray background for grid items */
   border: 1px solid #ddd; /* Optional border for each grid item */
+}
+
+/* Existing styles for buttons */
+button {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* Add transition for smooth color change */
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Style for buttons when they are being clicked */
+button:active {
+  background-color: #e0e0e0; /* Darker color to show the button is pressed */
+  transform: scale(0.98); /* Slightly scale down the button */
 }
