@@ -1,4 +1,8 @@
 let currentMode = "random"; // Default mode
+let mouseDown = false; // Variable to track whether the mouse is pressed
+
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
 // Function to create a grid of a specified size
 function createGrid(size) {
@@ -18,7 +22,11 @@ function createGrid(size) {
     gridItem.dataset.green = Math.floor(Math.random() * 256);
     gridItem.dataset.blue = Math.floor(Math.random() * 256);
 
-    gridItem.addEventListener("mouseover", handleMouseOver);
+    gridItem.addEventListener("mouseover", (event) => {
+      if (mouseDown) {
+        handleMouseOver(event);
+      }
+    });
 
     container.appendChild(gridItem);
   }
@@ -47,6 +55,11 @@ function handleMouseOver(event) {
   } else if (currentMode === "black") {
     square.style.backgroundColor = "black";
   }
+
+  // Eraser functionality
+  if (currentMode === "eraser") {
+    square.style.backgroundColor = ""; // Set to default or blank
+  }
 }
 
 // Function to change the drawing mode
@@ -73,10 +86,29 @@ function changeGridSize() {
   }
 }
 
+// Function to reset grid colors
+function resetGridColors() {
+  const gridItems = document.querySelectorAll("#grid-container .grid-item");
+  gridItems.forEach((item) => {
+    item.style.backgroundColor = ""; // Reset to default or blank
+    item.dataset.interactions = 0; // Reset interaction count if needed
+  });
+}
+
+// Event listener for the 'Reset Grid Colors' button
+document
+  .getElementById("reset-colors")
+  .addEventListener("click", resetGridColors);
+
 // Event listener for the 'Change Grid Size' button
 document
   .getElementById("change-size")
   .addEventListener("click", changeGridSize);
+
+// Event listener for the 'Eraser Mode' button
+document
+  .getElementById("eraser-mode")
+  .addEventListener("click", () => changeMode("eraser"));
 
 // Initial call to create a 16x16 grid
 createGrid(16);
