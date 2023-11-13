@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title of the webpage -->
-    <title>16x16 Grid</title>
+    <title>Dynamic Grid</title>
 
     <!-- Link to the external CSS file for styling -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Button to change grid size -->
+    <!-- When clicked, it will trigger a JavaScript function to change the size of the grid -->
+    <button id="change-size">Change Grid Size</button>
+
     <!-- Container for the grid, which will be populated by JavaScript -->
+    <!-- This is where the grid will be dynamically inserted -->
     <div id="grid-container"></div>
 
-    <!-- JavaScript file that contains the logic to create the grid -->
-    <!-- It's better to place the script tag at the end of the body -->
-    <!-- so the DOM is fully loaded before the script runs -->
+    <!-- JavaScript file that contains the logic to create and modify the grid -->
     <script src="script.js"></script>
   </body>
 </html>
