@@ -1,0 +1,14 @@
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr); /* Creates 16 columns */
+  grid-template-rows: repeat(16, 1fr); /* Creates 16 rows */
+  gap: 2px; /* Adjust gap between grid items */
+  width: 500px; /* Adjust width as needed */
+  height: 500px; /* Adjust height as needed */
+  margin: auto; /* Center the grid */
+}
+
+.grid-item {
+  background-color: #f0f0f0; /* Light gray background for grid items */
+  border: 1px solid #ddd; /* Optional border for each grid item */
+}

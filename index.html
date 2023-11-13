@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for character set and responsive design -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=bg, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the webpage -->
     <title>16x16 Grid</title>
+
+    <!-- Link to the external CSS file for styling -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="grid-container">
-      <script src="script.js"></script>
-    </div>
+    <!-- Container for the grid, which will be populated by JavaScript -->
+    <div id="grid-container"></div>
+
+    <!-- JavaScript file that contains the logic to create the grid -->
+    <!-- It's better to place the script tag at the end of the body -->
+    <!-- so the DOM is fully loaded before the script runs -->
+    <script src="script.js"></script>
   </body>
 </html>
